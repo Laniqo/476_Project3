@@ -71,32 +71,21 @@ def populate_db():
     db = cluster.connect(KEYSPACE)
     db.execute('USE userdata')
 
-    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('mark', uuid(), 'mark@sample.com', 'pbkdf2:sha256:50000$ohqiElyi$252bad2e576361a8e6b030ef11118ef44cecaa73a89d6261e4c264acd77fb20b' );""")
+    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('mark', 76ee3c8a-b513-487a-898f-13046d257686, 'mark@sample.com', 'pbkdf2:sha256:50000$ohqiElyi$252bad2e576361a8e6b030ef11118ef44cecaa73a89d6261e4c264acd77fb20b' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('john', uuid(), 'john@sample.com', 'pbkdf2:sha256:50000$T4VE9mTh$a98e6153057717e6d1580614b0e4e10349d2c4fded64fd234ad7f7039cf2367e' );""")
-    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('tom', uuid(), 'tom@sample.com', 'pbkdf2:sha256:50000$MtSnA8fD$00a15a4360be3ae035f16612290bfc96badc567f4d3ebb678f3b3a1827ffcd35' );""")
-    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('jack', uuid(), 'jack@sample.com', 'pbkdf2:sha256:50000$0ujvulkd$c3e82bc1beaae9f8bab74b468c012f7642e36da764d2f64d332325819df3ecea' );""")
+    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('tom', 3bc16f4a-ee55-4a14-b7d4-fd96c4ca9e22, 'tom@sample.com', 'pbkdf2:sha256:50000$MtSnA8fD$00a15a4360be3ae035f16612290bfc96badc567f4d3ebb678f3b3a1827ffcd35' );""")
+    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('jack', b3a0a35b-850d-436b-bb62-ab5a54d16f32, 'jack@sample.com', 'pbkdf2:sha256:50000$0ujvulkd$c3e82bc1beaae9f8bab74b468c012f7642e36da764d2f64d332325819df3ecea' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('craig', uuid(), 'craig@sample.com', 'pbkdf2:sha256:50000$tQ3v5Fmy$77377f7f0740cc1b836332e7862d6cf0d97b54f9fc84ed01c76c483d03934a50' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('josh', uuid(), 'josh@sample.com', 'pbkdf2:sha256:50000$0fKZMC5m$b4c3e62978d7f75cc6c112e1937e17ce9fa28cbfed1f484e7063732dd0ad8127' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('bilbo', uuid(), 'bilbo@sample.com', 'pbkdf2:sha256:50000$FCV2OQCj$e4c87d8752b5b9ce1b5d97aa70dbd4f9cd16d0caaefcf7d3886a928229388d62' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('legolas', 35fc7f24-09f5-49de-9072-506cb96c8411, 'legolas@sample.com', 'pbkdf2:sha256:50000$e3VqTFfu$0a35b8a050ecbe697fdd1cc8e53314e31f20a6a15148d1476f0e92fedf32d271' );""")
     db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('banksy', uuid(), 'banksy@sample.com', 'pbkdf2:sha256:50000$k6Iwq6G3$72c3815cfa3de747cefddab822ca7650fa805205585e2395f77ec5e08f75f2ce' );""")
-    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('drake', uuid(), 'drake@sample.com', 'pbkdf2:sha256:50000$QidHeH0b$a5cfa1f068c2d162bd7cf82662f90db5f87e31a830ca1e953b1e6d0707f32e82' );""")
+    db.execute("""INSERT INTO user(username, user_id, email, pw_hash) VALUES ('drake', 0bb3e74c-a2cc-4a93-b38e-99d2f8109e05, 'drake@sample.com', 'pbkdf2:sha256:50000$QidHeH0b$a5cfa1f068c2d162bd7cf82662f90db5f87e31a830ca1e953b1e6d0707f32e82' );""")
 
-    db.execute("""INSERT INTO message(author_id, username, pub_date, email, text) VALUES
-    (35fc7f24-09f5-49de-9072-506cb96c8411, 'legolas', 1518739148, 'legolas@example.com', 'hello minitwit!',)""")
-
-    db.execute("""INSERT INTO follower(who_id, whom_id) VALUES
-    (3bc16f4a-ee55-4a14-b7d4-fd96c4ca9e22, {35fc7f24-09f5-49de-9072-506cb96c8411}); """)
-    db.execute("""INSERT INTO follower(who_id, whom_id) VALUES
-    (b3a0a35b-850d-436b-bb62-ab5a54d16f32, {3bc16f4a-ee55-4a14-b7d4-fd96c4ca9e22, 35fc7f24-09f5-49de-9072-506cb96c8411});""")
-    db.execute("""INSERT INTO follower(who_id, whom_id) VALUES
-    (a7e8c623-1547-42cd-b0ea-7fb220835ec4, {b3a0a35b-850d-436b-bb62-ab5a54d16f32, 0bb3e74c-a2cc-4a93-b38e-99d2f8109e05, 76ee3c8a-b513-487a-898f-13046d257686});""")
-    db.execute("""INSERT INTO follower(who_id, whom_id) VALUES
-    (0359dfd6-1965-4e1a-ba4e-1eb740fd5f98, {0bb3e74c-a2cc-4a93-b38e-99d2f8109e05});""")
-    db.execute("""INSERT INTO follower(who_id, whom_id) VALUES
-    (1b9f0f18-cfef-4037-b9e9-19561fd7e171, {0359dfd6-1965-4e1a-ba4e-1eb740fd5f98, 35fc7f24-09f5-49de-9072-506cb96c8411});""")
-
-    #db.execute("cqlsh -f population.cql");
+    db.execute("""INSERT INTO message(author_id, username, pub_date, email, text, following) VALUES
+    (35fc7f24-09f5-49de-9072-506cb96c8411, 'legolas', 1518739148, 'legolas@example.com', 'hello minitwit!', {3bc16f4a-ee55-4a14-b7d4-fd96c4ca9e22, 35fc7f24-09f5-49de-9072-506cb96c8411})""")
+    db.execute("""INSERT INTO message(author_id, username, pub_date, email, text, following) VALUES
+    (3bc16f4a-ee55-4a14-b7d4-fd96c4ca9e22, 'tom', 1518741380, 'tom@example.com', 'SAMPLE MESSAGE', {b3a0a35b-850d-436b-bb62-ab5a54d16f32, 0bb3e74c-a2cc-4a93-b38e-99d2f8109e05, 76ee3c8a-b513-487a-898f-13046d257686})""")
 
 
 def init_db():
@@ -129,10 +118,8 @@ def init_db():
     );
     """)
 
-
     """Create message table"""
     db.execute("drop table if exists userdata.message;")
-
     db.execute("""
     create table message (
       author_id uuid,
@@ -140,10 +127,13 @@ def init_db():
       pub_date int,
       email text,
       text text,
+      following set<uuid>,
       PRIMARY KEY((author_id, username), pub_date)
     );
     """)
-    #db.execute("cqlsh -f schema.cql");
+
+    db.execute(""" CREATE INDEX following_idx ON userdata.message(following);""")
+
 
 class DatabaseAuth(BasicAuth):
     def __init__(self, app):
@@ -206,8 +196,7 @@ def followed(user_id, profile_id):
     db = cluster.connect(KEYSPACE)
 
     json_object = request.get_json()
-    followed = db.execute('''select 1 from follower where
-        follower.who_id = ? and follower.whom_id = ?''',
+    followed = db.execute('''select 1 from message where user_id=? and following contains ?''',
         [json_object['user_id'], json_object['profile_id']], one=True) is not None
 
     return jsonify(followed)
@@ -219,7 +208,7 @@ def user_info(user_id):
     db = cluster.connect(KEYSPACE)
 
     json_object = request.get_json()
-    user = db.execute('select * from user where user_id = ?', [json_object['user_id']], one=True)
+    user = db.execute('select * from user where user_id = ? or username = ?', [json_object['user_id'], json_object['username']], one=True)
     if user is None:
         abort(404)
     user = dict(user)
@@ -228,7 +217,9 @@ def user_info(user_id):
 @app.route('/confirm_username/<username>', methods=['GET', 'POST'])
 def confirm_username(username):
     db = cluster.connect(KEYSPACE)
+
     json_object = request.get_json()
+
     user = db.execute('select * from user where username = ?', [json_object['username']], one=True)
     if user is None:
         abort(404)
@@ -241,7 +232,8 @@ def confirm_username(username):
 def public_thread():
     '''Returns all the posted msgs of all users'''
     db = cluster.connect(KEYSPACE)
-    msg = db.execute('''select author_id, username, email, text from userdata.message limit ?''', [PER_PAGE])
+    msg = db.execute('''select author_id, username, pub_date, email, text from userdata.message limit ?''', [PER_PAGE])
+
     msg = map(dict, msg)
     return jsonify(msg)
 
@@ -252,10 +244,18 @@ def home_timeline():
     db = cluster.connect(KEYSPACE)
     json_object = request.get_json()
 
-    msg = db.execute('''select message.*, user.user_id, user.username, user.email from message, user
-        where message.author_id = user.user_id and (user.user_id = ? or user.user_id in (select whom_id from follower
-                                where who_id = ?)) order by message.pub_date desc limit ?''',
-                                [json_object['user_id'], json_object['user_id'], PER_PAGE])
+    #grab all id's user is following
+    following = db.execute('''select following from message where user_id = ? ''', [json_object['user_id']])
+
+    #if following is not empty, grab messages of all user is following
+    if following is not None:
+        for item in following:
+            text = db.execute('''select author_id, username, email, text from userdata.message where user_id = ? limit ?''', [item, PER_PAGE])
+            msg.append(text)
+
+    #grab all of current user's messages
+    text = db.execute('''select author_id, username, pub_date, email, text, from message where user_id = ?''', [json_object['user_id', PER_PAGE]])
+    msg.append(text)
     msg = map(dict, msg)
 
     return jsonify(msg)
@@ -302,7 +302,7 @@ def follow_user(username):
     	abort(404)
 
     db = cluster.connect(KEYSPACE)
-    db.execute('insert into follower (who_id, whom_id) values (?, ?)', [who_id,whom_id])
+    db.execute('insert into message (following) values (?) where user_id = ?', [whom_id, who_id])
 
 
     return jsonify(json_object)
@@ -328,8 +328,8 @@ def unfollow_user(username):
         abort(404)
 
     db = cluster.connect(KEYSPACE)
-    db.execute('delete from follower where who_id=? and whom_id=?',
-              [who_id, whom_id])
+    db.execute('delete from message(follower) value (?) where user_id=?',
+              [whom_id, who_id])
 
     return jsonify(json_object)
 
@@ -348,7 +348,7 @@ def post_message():
         text = json_object['text']
 
         db = cluster.connect(KEYSPACE)
-        db.execute('''insert into message (author_id, username, email,  pub_date, text,) values (?, ?, ?)''', [json_object['user_id'], json_object['username'], json_object['email'], int(time.time()), text])
+        db.execute('''insert into message (author_id, username, pub_date, email, text, ) values (?, ?, ?, ?, ?)''', [json_object['user_id'], json_object['username'], int(time.time()), json_object['email'], text])
 
         return jsonify(json_object)
 
@@ -371,9 +371,9 @@ def register():
             else:
                 db = cluster.connect(KEYSPACE)
                 password = generate_password_hash(data['password'])
-                db.execute('''insert into user (username, email, pw_hash) values (?, ?, ?, ?)'''
+                db.execute('''insert into user (username, user_id, email, pw_hash) values (?, ?, ?, ?)'''
                 ,[data['username'], uuid(), data['email'], password])
-                db.commit()
+
                 return jsonify({'username': data['username'], 'email': data['email'], 'status': 'Successfully registered.', 'status code':201})
 
 
